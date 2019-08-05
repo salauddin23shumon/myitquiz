@@ -28,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.project.s1s1s1.myitquiz.R;
+import com.project.s1s1s1.myitquiz.utility.BitmapAsyncTask;
 import com.project.s1s1s1.myitquiz.utility.SessionManager;
 import com.project.s1s1s1.myitquiz.dataModel.Score;
 import com.project.s1s1s1.myitquiz.dataModel.User;
@@ -57,12 +58,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login, btn_signup;
     private ProgressBar loading;
     private String sName, sEmail, sId, sPhoto, name, password;
-    String errMsg = " Login Failed";
-    private CheckBox chkb;
-    MediaPlayer error_beep, ok_beep;
-    Score userScore;
+    private MediaPlayer error_beep, ok_beep;
+    private Score userScore;
     private static final String URL_LOGIN = "api_login.php";
-    PreferenceObject userObject;
+    private PreferenceObject userObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        chkb = findViewById(R.id.checkBox);
+        CheckBox chkb = findViewById(R.id.checkBox);
 // code for checkbox
         chkb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -108,9 +107,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-
         initialize();
         if (!validate()) {
+            String errMsg = " Login Failed";
             Toast.makeText(this, errMsg, Toast.LENGTH_SHORT).show();
             error_beep.start();
         } else {
@@ -220,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                                     userScore = new Score(cpp, cs, cProg, java, html, ds, dld, css, js, computer, mysql, php);
 
                                     try {
-                                        Bitmap photo = new DownloadImage().execute(sPhoto).get(); ///calling class
+                                        Bitmap photo = new BitmapAsyncTask().execute(sPhoto).get(); ///calling class
                                         saveData(photo);
                                     } catch (ExecutionException e) {
                                         e.printStackTrace();
@@ -278,30 +277,6 @@ public class LoginActivity extends AppCompatActivity {
         ed_password.setText("");
         ed_name.setFocusableInTouchMode(true);
         ed_name.requestFocus();
-    }
-
-
-    /// class for myImage downloading from url and saving into sharedPreferences
-    public static class DownloadImage extends AsyncTask<String, Void, Bitmap> {
-
-        @Override
-        protected Bitmap doInBackground(String... URL) {
-
-            String imageURL = URL[0];
-            Bitmap bitmap = null;
-            try {
-                // Download Image from URL
-                InputStream in = new URL(imageURL).openStream();
-                // Decode Bitmap
-                bitmap = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return bitmap;
-        }
-
-        protected void onPostExecute(Bitmap bitmap) {
-        }
     }
 
     private void createSession(String id, String name, String email) {

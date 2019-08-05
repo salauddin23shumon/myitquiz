@@ -78,7 +78,7 @@ public class VolleyResponse {
                                     Score newScore = new Score(cpp, cs, cProg, java, html, ds, dld, css, js, computer, mysql, php);
 
                                     try {
-                                        Bitmap bitmap = new LoginActivity.DownloadImage().execute(strPhoto).get();
+                                        Bitmap bitmap = new BitmapAsyncTask().execute(strPhoto).get();
                                         User newUser = new User();
                                         newUser.setId(oldUser.getId());
                                         newUser.setPassword(oldUser.getPassword());
