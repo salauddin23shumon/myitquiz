@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/background26"
+    tools:context=".activity.HelpActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_title"
+        android:fontFamily="casual"
+        android:textColor="#fff"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_marginRight="?android:attr/actionBarSize" />
+    </androidx.appcompat.widget.Toolbar>
+
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+         android:padding="20dp"
+         android:textSize="24sp"
+         android:fontFamily="casual"
+         android:textColor="#56E45C"
+         android:textStyle="bold"
+         android:text="1. Select any subject \n 2. Press the play button \n 3. Answer the quiz within time \n 4. Enjoy the quiz"
+         android:textAlignment="viewStart"
+         android:gravity="start" />
+
+</LinearLayout>

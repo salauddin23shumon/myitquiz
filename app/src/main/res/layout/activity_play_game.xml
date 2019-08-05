@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.PlayGameActivity"
+    android:background="@drawable/sea">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingBottom="40dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="2dp">
+
+            <com.github.lzyzsd.circleprogress.DonutProgress
+                android:id="@+id/donut_progress"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:visibility="invisible"
+                android:layout_alignParentRight="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/donut_progress"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/questionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:autoSizeTextType="uniform"
+                    android:background="@drawable/round_shape"
+                    android:lines="5"
+                    android:maxLines="8"
+                    android:padding="4dp"
+                    android:textAlignment="center"
+                    android:textColor="#393737"
+                    android:textSize="21sp"
+                    android:autoSizeMaxTextSize="22sp"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_optA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:onClick="executeQuiz"
+                        android:background="@drawable/mybutton_blue"
+                        style="@style/quizOptBtn"/>
+                    <Button
+                        android:id="@+id/btn_optB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:onClick="executeQuiz"
+                        android:background="@drawable/mybutton_red"
+                        style="@style/quizOptBtn"/>
+
+                    <Button
+                        android:id="@+id/btn_optC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:onClick="executeQuiz"
+                        android:background="@drawable/mybutton_yellow"
+                        style="@style/quizOptBtn"/>
+
+                    <Button
+                        android:id="@+id/btn_optD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:onClick="executeQuiz"
+                        android:background="@drawable/mybutton_green"
+                        style="@style/quizOptBtn"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="255dp"
+            android:layout_height="195dp"
+            android:layout_gravity="center"
+            android:onClick="btnPlayClicked"
+            android:text="play"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:foreground="?attr/selectableItemBackground"
+            android:textColor="#fff"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="@drawable/btn_play" />
+
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_gravity="center"
+        android:layout_width="260dp"
+        android:layout_height="200dp"
+        android:background="@drawable/gif2"
+        android:src="@drawable/blank"
+        android:id="@+id/gifview"
+        android:scaleType="fitXY"
+        android:visibility="visible"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

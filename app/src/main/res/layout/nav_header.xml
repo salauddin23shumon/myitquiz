@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/top_layout"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/quiz_drawer">
+
+
+    <LinearLayout
+        android:id="@+id/img_layout"
+        android:layout_marginTop="33dp"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:background="@drawable/circle2"
+        android:layout_gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/nav_header_image"
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:layout_gravity="center"
+            android:src="@drawable/white_cricle" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:id="@+id/nav_header_name"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:gravity="center|center_vertical"
+        android:layout_gravity="center"
+        android:text="Name"
+        android:background="@drawable/my_roundtxt"/>
+
+</LinearLayout>
+

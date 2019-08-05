@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background22">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.ProfileActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mytoolbar2"
+            android:id="@+id/toolbar"
+            app:titleTextColor="#fff"
+            app:subtitleTextColor="#fff"
+            app:popupTheme="@style/menu">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/myprofile"
+                android:fontFamily="casual"
+                android:textColor="#fff"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:layout_marginRight="?android:attr/actionBarSize" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/top_layout"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:id="@+id/img_layout"
+                android:layout_marginTop="10dp"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:background="@drawable/circle2"
+                android:layout_gravity="center">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/white_cricle" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_photo"
+                android:layout_marginTop="20dp"
+                style="@style/Widget.AppCompat.ActionButton.CloseMode"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/glossy_btn_blue"
+                android:layout_gravity="center"
+                android:text="Edit Photo"
+                android:textColor="#000"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/top_layout"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:weightSum="2"
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/border_txtview"
+                android:padding="5dp">
+
+                <ImageView
+                    android:src="@drawable/ic_person_black_24dp"
+                    android:layout_weight="1"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border_txtview">
+
+                <ImageView
+                    android:src="@drawable/ic_email_black_24dp"
+                    android:layout_weight="1"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_edit"
+                    android:background="@drawable/glossy_btn_green"
+                    android:text="Edit Profile"
+                    android:textColor="#090a0a"
+                    android:layout_centerHorizontal="true"/>
+
+                <Button
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/btn_update"
+                    android:text="Update Profile"
+                    android:textColor="#000000"
+                    android:background="@drawable/mybutton_yellow"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

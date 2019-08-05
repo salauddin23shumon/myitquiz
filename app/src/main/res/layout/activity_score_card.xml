@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="#673AB7" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_score_card"
+        android:fontFamily="casual"
+        android:textColor="#fff"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_marginRight="?android:attr/actionBarSize" />
+    </androidx.appcompat.widget.Toolbar>
+
+   <TableLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="5dp"
+       android:background="#87B6F0">
+       <TableRow>
+           <TextView
+               android:text="  Subject"
+               android:textSize="30sp"
+               android:layout_weight="1.5"/>
+           <TextView
+               android:text="  Score"
+               android:textSize="30sp"
+               android:layout_weight="1"/>
+       </TableRow>
+   </TableLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scoreRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_margin="4dp"
+        tools:listitem="@layout/score_row_item"/>
+
+</LinearLayout>

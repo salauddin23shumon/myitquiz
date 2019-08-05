@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">MyITquiz</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_about_us">About Us</string>
+    <string name="note">MyITquiz is a quiz app which is designed with optimized user interface.
+        It has 12 categories of quiz on the field of information technology. A student of CS will get much benefit and fun from this app. </string>
+
+    <string name="title_activity_questions">Questions</string>
+    <string name="title_activity_score_card">MyScoreCard</string>
+    <string name="title_activity_setting_activity">MySettings</string>
+
+    <string name="title_activity_game_over">GameOverActivity</string>
+    <string name="myprofile">MyProfile</string>
+    <string name="version_no">version %1$s</string>
+    <string name="activity_web_title">Online Contest</string>
+    <string name="help_title">Help</string>
+
+
+</resources>

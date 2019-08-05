@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:marquee="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background24">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".AboutUsActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/mytoolbar"
+        app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_about_us"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_marginRight="?android:attr/actionBarSize" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/app_logo2" />
+
+        <TextView
+            android:id="@+id/q"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="@string/app_name"
+            android:textColor="#F10E55"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/q"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:textColor="#BAF122"
+            android:text="version 1.0.0"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:text="@string/note"
+            android:textSize="13sp"
+            android:layout_below="@+id/version"/>
+
+        <TextView
+            android:id="@+id/credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CREDITS"
+            android:textStyle="bold"
+            android:textColor="#36ECFD"
+            android:textSize="26sp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_below="@+id/note"/>
+
+        <android.lib.widget.verticalmarqueetextview.VerticalMarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:background="#FCEB9E"
+            android:paddingTop="40dp"
+            android:textAlignment="center"
+            android:paddingBottom="40dp"
+            marquee:marqueeSpeed="15"
+            marquee:textSize="8sp"
+            marquee:textColor="#C20606"
+            marquee:textStyle="bold"
+            marquee:text=" 1. youtube \n\n 2. github \n\n 3. stackOverflow \n\n 4. Abdur Rahman, BSc in CSE \n\n 5. Ataul Haque, Web Engineer, BUFT \n\n 6. Kayser Nizam, IT officer, BUFT \n\n 7. Mahbub Alam, Lecturer ISTT    "
+            android:layout_below="@+id/credits"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+</LinearLayout>
+</ScrollView>
