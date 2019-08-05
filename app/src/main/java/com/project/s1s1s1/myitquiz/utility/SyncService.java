@@ -29,6 +29,8 @@ import static com.project.s1s1s1.myitquiz.utility.VolleyResponse.errorResponse;
 public class SyncService extends JobService {
 
     private static final String TAG = "SyncService";
+    String title = "MyITquiz";
+    String message;
 
 
     @Override
@@ -52,11 +54,14 @@ public class SyncService extends JobService {
                         if (success.equals("1")) {
                             user.setSync_status(Constant.SYNC_STATUS_OK);
                             preferenceObject.saveUserData(user);
-//                            jobFinished(jobParameters, false);
                             new SyncData(getApplicationContext()).cancelJob();  // cancelling the job and also repetition
+                            message = jsonObject.getString("message");
+                            new NotificationHelper(getApplicationContext(), title, message).getNotification();
                             Log.d(TAG, "syncData: jobFinished successfully");
-                        }else {
-                            Log.d(TAG, "onResponse: "+jsonObject.getString("message"));
+                        } else {
+                            Log.d(TAG, "onResponse: " + jsonObject.getString("message"));
+                            message = jsonObject.getString("message")+". Profile update failed";
+                            new NotificationHelper(getApplicationContext(), title, message).getNotification();
                             preferenceObject.saveUserData(oldUserData());
                             new SyncData(getApplicationContext()).cancelJob();  // cancelling the job and also repetition
                         }

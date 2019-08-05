@@ -168,11 +168,9 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
         int status = user.getSync_status();
         Log.d(TAG, "onStart: status " + status);  /// triggering job scheduler
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            if (isNetworkAvailable(this)) {
-                if (status == Constant.SYNC_STATUS_FAILED) {
-                    SyncData syncData = new SyncData(this);
-                    syncData.doSync();
-                }
+            if (status == Constant.SYNC_STATUS_FAILED) {
+                SyncData syncData = new SyncData(this);
+                syncData.doSync();
             }
         }
     }

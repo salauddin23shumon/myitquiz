@@ -1,5 +1,6 @@
 package com.project.s1s1s1.myitquiz.utility;
 
+import android.annotation.TargetApi;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -18,8 +19,12 @@ public class SyncData {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public SyncData(Context context) {
-        long interval = 15*60*1000;
-//        long interval = 900000;
+
+        long interval;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
+            interval = 2*60*1000;
+        else
+            interval = 15*60*1000;
         scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         ComponentName jobService = new ComponentName(context, SyncService.class);
         JobInfo.Builder builder = new JobInfo.Builder(SYNC_JOB_ID, jobService);
@@ -29,7 +34,8 @@ public class SyncData {
         info = builder.build();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void doSync() {
         int resultCode = scheduler.schedule(info);
         if (resultCode == JobScheduler.RESULT_SUCCESS) {

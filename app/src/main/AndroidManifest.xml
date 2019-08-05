@@ -24,7 +24,8 @@
             android:theme="@style/AppThemeQuiz" />
         <activity
             android:name=".activity.MainActivity"
-            android:label="MyITquiz"/>
+            android:label="MyITquiz"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".activity.AboutUsActivity"
             android:label="@string/title_activity_about_us"

@@ -53,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
     private Button btn_photo_upload, btn_update, btn_edit;
     private String name, email, userImage, selectedImage = null, newImage, userID;
     private User user;
-    private static User oldUser;
+    private static User oldUser;        //copying previous value
     private ProgressDialog progressDialog;
     private CircleImageView profile_image;
     private PreferenceObject object;
@@ -229,7 +229,6 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
         getUserDetails(modifiedUser);
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -237,11 +236,9 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
         int status = user.getSync_status();     // calling job scheduler to sync data
         Log.d(TAG, "onStart: status " + status);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            if (isNetworkAvailable(this)) {
-                if (status == Constant.SYNC_STATUS_FAILED) {
-                    SyncData syncData = new SyncData(this);
-                    syncData.doSync();
-                }
+            if (status == Constant.SYNC_STATUS_FAILED) {
+                SyncData syncData = new SyncData(this);
+                syncData.doSync();
             }
         }
     }
