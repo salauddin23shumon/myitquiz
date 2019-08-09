@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:background="#673AB7" >
+        android:background="@drawable/mytoolbar" >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:padding="5dp"
-       android:background="#87B6F0">
+       android:background="#B3E7E6">
        <TableRow>
            <TextView
                android:text="  Subject"

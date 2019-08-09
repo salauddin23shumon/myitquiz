@@ -52,9 +52,9 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 import static com.project.s1s1s1.myitquiz.utility.Utils.chooseImageFile;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getBitmapImage;
+import static com.project.s1s1s1.myitquiz.utility.Utils.getSound;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getStringImage;
 import static com.project.s1s1s1.myitquiz.utility.VolleyResponse.errorResponse;
 
@@ -68,23 +68,15 @@ public class RegisterActivity extends AppCompatActivity {
     private User user;
     private Button btn_regist, btn_photo;
     private ProgressBar loading;
-    private MediaPlayer error_beep, ok_beep;
     private CircleImageView profile_image;
-    private Bitmap bitmap;
-    private CheckBox chkb;
-    SessionManager sessionManager;
-
+    private SessionManager sessionManager;
     private static final String URL_REGISTER = "api_signup.php";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         sessionManager = new SessionManager(this);
-
-        error_beep = MediaPlayer.create(this, R.raw.error_all);
-        ok_beep = MediaPlayer.create(this, R.raw.succeess);
 
         loading = findViewById(R.id.loading);
         ed_name = findViewById(R.id.name);
@@ -93,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn_regist = findViewById(R.id.btn_regist);
         btn_photo = findViewById(R.id.btn_photo);
         profile_image = findViewById(R.id.profile_image);
-        chkb = findViewById(R.id.checkBox);
+        CheckBox chkb = findViewById(R.id.checkBox);
 
 
         chkb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -129,6 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
         initialize();
         if (!validate()) {
             Toast.makeText(this, error_stmt, Toast.LENGTH_SHORT).show();
+            getSound(this,0).start();
         } else {
             jsonTask();
         }
@@ -141,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (requestCode == PHOTO_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
 
                 RequestOptions myOptions = new RequestOptions()
                         .centerCrop() // or centerCrop
@@ -183,9 +176,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (result.equals("1")) {
                                     Toast.makeText(getApplicationContext(), "New Account Created", Toast.LENGTH_SHORT).show();
 
-                                    ok_beep.start();
+                                    getSound(RegisterActivity.this,1).start();
                                     id = jsonObject.getString("message").trim(); /// getting id from db via api
-                                    Log.d(TAG, "id: "+ id);
+                                    Log.d(TAG, "id: " + id);
                                     user = new User(id, name, email, password, image, userScore());
                                     createSession(id, name, email);
                                     object.saveUserData(user);
@@ -251,6 +244,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (name.isEmpty() || name.length() > 32) {
             ed_name.setError("Please Enter valid name");
             valid = false;
+        } else if (!name.matches("[a-z A-Z0-9.@]*")) {
+            ed_name.setError("Please enter valid name without special symbol");
+            valid = false;
         } else if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             ed_email.setError("Please Enter valid Email");
             valid = false;
@@ -268,13 +264,11 @@ public class RegisterActivity extends AppCompatActivity {
     private void afterLoginFail(String errMsg) {
         loading.setVisibility(View.GONE);
         btn_regist.setVisibility(View.VISIBLE);
-        error_beep.start();
+        getSound(this,0).start();
         Toast.makeText(RegisterActivity.this, "Error!!! " + errMsg, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void backToLogin(View view) {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }

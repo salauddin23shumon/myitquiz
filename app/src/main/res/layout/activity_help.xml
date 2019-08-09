@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/background26"
+    android:background="@drawable/background70"
     tools:context=".activity.HelpActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -34,7 +34,7 @@
          android:fontFamily="casual"
          android:textColor="#56E45C"
          android:textStyle="bold"
-         android:text="1. Select any subject \n 2. Press the play button \n 3. Answer the quiz within time \n 4. Enjoy the quiz"
+         android:text="@string/help_note"
          android:textAlignment="viewStart"
          android:gravity="start" />
 

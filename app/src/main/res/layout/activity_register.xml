@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/background18">
+    android:background="@drawable/background55">
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -54,7 +54,7 @@
                 style="@style/Widget.AppCompat.ActionButton.CloseMode"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@drawable/mybutton_green"
+                android:background="@drawable/glossy_btn_green"
                 android:textColor="@color/colorText2"
                 android:textStyle="bold"
                 android:layout_gravity="center"
@@ -178,12 +178,22 @@
             <Button
                 android:id="@+id/btn_regist"
                 android:background="@drawable/mybutton_violet"
-                android:textColor="#fdfdfd"
+                android:textColor="#F3FCF5"
                 android:text="Register"
                 android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="31dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:text="Back to login"
+                android:textColor="#aff13e"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:onClick="backToLogin"/>
         </LinearLayout>
 
 

@@ -20,8 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme1"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".activity.QuizActivity"
-            android:theme="@style/AppThemeQuiz" />
+            android:theme="@style/AppThemeQuiz"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".activity.MainActivity"
             android:label="MyITquiz"
@@ -30,7 +32,8 @@
             android:name=".activity.AboutUsActivity"
             android:label="@string/title_activity_about_us"
             android:parentActivityName=".activity.QuizActivity"
-            android:theme="@style/AppThemeQuiz">
+            android:theme="@style/AppThemeQuiz"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.QuizActivity" />
@@ -39,16 +42,18 @@
             android:name=".activity.PlayGameActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme1"
-            android:noHistory="true"/>
+            android:launchMode="singleTop"/>
         <activity
             android:name=".activity.ResultActivity"
             android:label="Result"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".activity.ScoreCardActivity"
-            android:label="High Score"
+            android:label="@string/title_activity_score_card"
             android:parentActivityName=".activity.QuizActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.QuizActivity" />
@@ -56,12 +61,14 @@
         <activity
             android:name=".activity.HelpActivity"
             android:label="Help"
-            android:parentActivityName=".activity.QuizActivity" />
+            android:parentActivityName=".activity.QuizActivity"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_setting_activity"
             android:parentActivityName=".activity.QuizActivity"
-            android:theme="@style/AppThemeQuiz">
+            android:theme="@style/AppThemeQuiz"
+            android:launchMode="singleInstance">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.QuizActivity" />
@@ -76,7 +83,9 @@
             android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".activity.ProfileActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName=".activity.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -87,7 +96,8 @@
             android:label="@string/title_activity_game_over"
             android:theme="@style/FullscreenTheme"
             android:noHistory="true"/>
-        <activity android:name=".splashScreen.StartSplash">
+        <activity android:name=".splashScreen.StartSplash"
+            android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".splashScreen.StartSplash" />
@@ -104,7 +114,8 @@
             android:name=".activity.WebActivity"
             android:label="Online Contest"
             android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme1"/>
+            android:theme="@style/AppTheme1"
+            android:launchMode="singleTop"/>
 
         <service
             android:name=".utility.SyncService"

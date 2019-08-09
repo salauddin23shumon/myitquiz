@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.project.s1s1s1.myitquiz.R;
 import com.project.s1s1s1.myitquiz.utility.Constant;
 
+import static com.project.s1s1s1.myitquiz.utility.Utils.getSound;
 import static com.project.s1s1s1.myitquiz.utility.Utils.isNetworkAvailable;
 
 public class WebActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class WebActivity extends AppCompatActivity {
         webView = findViewById(R.id.myweb);
         if (!isNetworkAvailable(this)) {
             Snackbar.make(webView, Html.fromHtml("<font color=\"#FA0707\"><b>No internet</b></font>"), Snackbar.LENGTH_LONG).show();
+            getSound(this,0).start();
         }
         webView.getSettings().setDomStorageEnabled(true);
 

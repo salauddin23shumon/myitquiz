@@ -2,20 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
     <LinearLayout
+        android:id="@+id/score_row_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:padding="2dp"
         android:layout_margin="5dp">
         <TextView
             android:id="@+id/subTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="cmoputer"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_weight="1.5"
             android:background="#E2E0E0"/>
 
@@ -24,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="cmoputer"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:paddingLeft="20dp"
             android:background="#CFEEFD"/>

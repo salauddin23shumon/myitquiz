@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import com.project.s1s1s1.myitquiz.dataModel.Quiz;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
@@ -11,11 +12,12 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class DbAssetHelper extends SQLiteAssetHelper {
 
     private static final String TAG = DbAssetHelper.class.getSimpleName();
-    private String Database_Name;
+
     private String Table_Name;
     private static final int DB_VERSION=1;
     private static final String ID = "_id";//name of column1
@@ -26,12 +28,10 @@ public class DbAssetHelper extends SQLiteAssetHelper {
     private static final String OptionD = "OptionD";//name of column6
     private static final String ANSWER = "Answer";//name of column7
     private  SQLiteDatabase sqliteDb;
-    private Cursor cursor;
-    private Context context;
+
 
     public DbAssetHelper(Context context, String Database_Name, String Table_Name) {
         super(context, Database_Name,null, DB_VERSION);
-        this.context=context;
         this.Table_Name=Table_Name;
         sqliteDb=getReadableDatabase();
     }
@@ -43,6 +43,7 @@ public class DbAssetHelper extends SQLiteAssetHelper {
             if (sqliteDb!=null) {
                 Cursor cursor = sqliteDb.rawQuery("SELECT * FROM " + Table_Name, null); // getting size of the table
                 item = cursor.getCount();
+                cursor.close();
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -70,6 +71,7 @@ public class DbAssetHelper extends SQLiteAssetHelper {
                         quiz.setAnswer(cursor.getString(cursor.getColumnIndex(ANSWER)));
                         quizList.add(quiz);
                     } while (cursor.moveToNext());
+                    cursor.close();
                 }
             }else {
                 Log.e(TAG, "db is null " );
@@ -78,6 +80,6 @@ public class DbAssetHelper extends SQLiteAssetHelper {
             e.printStackTrace();
         }
         Collections.shuffle(quizList);
-        return quizList;
+        return  quizList;
     }
 }

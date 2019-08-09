@@ -65,6 +65,7 @@ public class NotificationHelper extends ContextWrapper {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_SOUND|Notification.DEFAULT_LIGHTS|Notification.DEFAULT_VIBRATE)
                 .setContentIntent(resultPendingIntent);
 
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(context);

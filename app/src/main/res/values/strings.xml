@@ -17,5 +17,8 @@
     <string name="activity_web_title">Online Contest</string>
     <string name="help_title">Help</string>
 
+    <string name="selected_input">acbdefghijklmnopqrstuvwxyz1234567890</string>
+    <string name="help_note">1. Select any subject  \n 2. Press the play button \n  3. Answer the quiz within time  \n 4. Enjoy the quiz</string>
+
 
 </resources>

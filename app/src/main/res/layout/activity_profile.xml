@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background22">
+    android:background="@drawable/background65">
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -159,7 +159,7 @@
                     android:id="@+id/btn_update"
                     android:text="Update Profile"
                     android:textColor="#000000"
-                    android:background="@drawable/mybutton_yellow"
+                    android:background="@drawable/mybutton_maroon"
                     android:visibility="gone"/>
             </RelativeLayout>
 

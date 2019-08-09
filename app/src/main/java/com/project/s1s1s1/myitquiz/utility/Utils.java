@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Base64;
@@ -20,6 +21,8 @@ import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
+
+import com.project.s1s1s1.myitquiz.R;
 
 import java.io.ByteArrayOutputStream;
 
@@ -76,5 +79,21 @@ public class Utils {
         animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
         animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
         return animation;
+    }
+
+    public static MediaPlayer getSound(Context context, int i) {
+
+        if (i==1)
+            return MediaPlayer.create(context, R.raw.succeess);
+        else if (i==2)
+            return MediaPlayer.create(context, R.raw.point_beep);
+        else
+            return MediaPlayer.create(context, R.raw.error_all);
+    }
+
+    public static MediaPlayer getMainTheme(Context context){
+        MediaPlayer music=MediaPlayer.create(context, R.raw.piano_background);
+        music.setLooping(true);
+        return music;
     }
 }

@@ -57,7 +57,7 @@ public class QuizMenu {
         quizMenuList.add(new QuizMenu(10, R.drawable.btn10,"data_structure"));
         quizMenuList.add(new QuizMenu(11, R.drawable.btn11,"c++"));
         quizMenuList.add(new QuizMenu(12, R.drawable.btn12,"digital_logic"));
-//        Collections.shuffle(quizMenuList);
+        Collections.shuffle(quizMenuList);
         return quizMenuList;
     }
 }

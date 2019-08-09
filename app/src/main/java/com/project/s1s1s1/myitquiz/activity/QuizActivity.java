@@ -31,9 +31,9 @@ import com.project.s1s1s1.myitquiz.utility.Constant;
 import com.project.s1s1s1.myitquiz.utility.SyncData;
 import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
 import com.project.s1s1s1.myitquiz.utility.QuizViewAdapter;
-
 import static com.project.s1s1s1.myitquiz.utility.Utils.getBitmapImage;
-import static com.project.s1s1s1.myitquiz.utility.Utils.isNetworkAvailable;
+import static com.project.s1s1s1.myitquiz.utility.Utils.getMainTheme;
+
 
 public class QuizActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,7 +44,6 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
     private TextView nav_header_name;
     private ImageView nav_header_image;
     private SessionManager sessionManager;
-    private MediaPlayer mediaPlayer;
     private SharedPreferences sharedPreferences_sound;
     private User user;
     private PreferenceObject object;
@@ -64,13 +63,35 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
         soundConfig();
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+//        if (mediaPlayer!=null) {
+//            outState.putInt("position", mediaPlayer.getCurrentPosition());
+//            mediaPlayer.pause();
+//        }
+//
+//        Log.d(TAG, "onSaveInstanceState: called");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        int pos = savedInstanceState.getInt("position");
+//        if (mediaPlayer!=null) {
+//            mediaPlayer.seekTo(pos);
+//        }
+//        Log.d(TAG, "onRestoreInstanceState: "+pos);
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     private void soundConfig() {
         sharedPreferences_sound = getSharedPreferences("Sound_Pref", MODE);
         //To play background sound
         if (sharedPreferences_sound.getInt("Sound", 0) == 0) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.piano_background);
-            mediaPlayer.start();
-            mediaPlayer.setLooping(true);
+            getMainTheme(this).start();
+//            mediaPlayer = MediaPlayer.create(this, R.raw.piano_background);
+//            mediaPlayer.start();
+//            mediaPlayer.setLooping(true);
         }
     }
 
@@ -148,25 +169,31 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPause() {
         super.onPause();
-        if (sharedPreferences_sound.getInt("Sound", 0) == 0)
-            mediaPlayer.pause();
+//        if (sharedPreferences_sound.getInt("Sound", 0) == 0)
+//            mediaPlayer.pause();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+        Log.d(TAG, "onRestart: called");
         if (sharedPreferences_sound.getInt("Sound", 0) == 0)
-            mediaPlayer.start();
+//            mediaPlayer.start();
         object = new PreferenceObject(this);      //****updating user
         User newUser = object.getUserData();
         setUserInfo(newUser);
+        syncUserData(newUser);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: called");
+        syncUserData(user);
+    }
+
+    private void syncUserData(User user) {
         int status = user.getSync_status();
-        Log.d(TAG, "onStart: status " + status);  /// triggering job scheduler
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             if (status == Constant.SYNC_STATUS_FAILED) {
                 SyncData syncData = new SyncData(this);

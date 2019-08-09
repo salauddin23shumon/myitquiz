@@ -47,7 +47,7 @@ public class QuizViewAdapter extends RecyclerView.Adapter<QuizViewAdapter.MyView
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, ""+singleQuiz.getId(), Toast.LENGTH_SHORT).show();
-                context.startActivity(new Intent(context, PlayGameActivity.class).putExtra(Message, subject));
+                context.startActivity(new Intent(context, PlayGameActivity.class).putExtra(Message, subject).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
                 ((Activity)context).finish();
             }
         });

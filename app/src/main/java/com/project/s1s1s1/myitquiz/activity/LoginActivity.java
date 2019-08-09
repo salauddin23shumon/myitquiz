@@ -45,7 +45,9 @@ import java.util.Map;
 import java.net.*;
 import java.util.concurrent.ExecutionException;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
+import static com.project.s1s1s1.myitquiz.utility.Utils.getSound;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getStringImage;
 import static com.project.s1s1s1.myitquiz.utility.Utils.isNetworkAvailable;
 import static com.project.s1s1s1.myitquiz.utility.VolleyResponse.errorResponse;
@@ -58,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login, btn_signup;
     private ProgressBar loading;
     private String sName, sEmail, sId, sPhoto, name, password;
-    private MediaPlayer error_beep, ok_beep;
     private Score userScore;
     private static final String URL_LOGIN = "api_login.php";
     private PreferenceObject userObject;
@@ -74,9 +75,6 @@ public class LoginActivity extends AppCompatActivity {
         ed_password = findViewById(R.id.password);
         btn_login = findViewById(R.id.btn_login);
         btn_signup = findViewById(R.id.btn_regist);
-
-        error_beep = MediaPlayer.create(this, R.raw.error_all);
-        ok_beep = MediaPlayer.create(this, R.raw.succeess);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!validate()) {
             String errMsg = " Login Failed";
             Toast.makeText(this, errMsg, Toast.LENGTH_SHORT).show();
-            error_beep.start();
+            getSound(this,0).start();
         } else {
             loading.setVisibility(View.VISIBLE);
             btn_login.setVisibility(View.GONE);
@@ -148,11 +146,11 @@ public class LoginActivity extends AppCompatActivity {
     private void afterLoginSuccess() {
         loading.setVisibility(View.VISIBLE);
         btn_login.setVisibility(View.GONE);
-        ok_beep.start();
+        getSound(this,1).start();
         resetEditor();
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        intent.addFlags(FLAG_ACTIVITY_NO_HISTORY);
         finish();
     }
 
@@ -267,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
     private void afterLoginFail(String errMsg) {
         loading.setVisibility(View.GONE);
         btn_login.setVisibility(View.VISIBLE);
-        error_beep.start();
+        getSound(this,0).start();
         Toast.makeText(LoginActivity.this, "Error!!! " + errMsg, Toast.LENGTH_SHORT).show();
     }
 

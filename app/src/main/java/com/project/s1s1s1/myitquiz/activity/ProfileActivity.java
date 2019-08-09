@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.project.s1s1s1.myitquiz.utility.Utils.chooseImageFile;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getBitmapImage;
+import static com.project.s1s1s1.myitquiz.utility.Utils.getSound;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getStringImage;
 
 import static com.project.s1s1s1.myitquiz.utility.Utils.isNetworkAvailable;
@@ -100,15 +102,11 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        /// back navigation btn
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         getUserDetails(user);
 
     }//end of onCreate
-
 
     ///set btn color and cursor
     private void btn_update_setting() {
@@ -133,14 +131,6 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
         profile_image.setImageBitmap(userPic);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void SaveEditDetail() {
         name = ed_name.getText().toString().trim();
         email = ed_email.getText().toString().trim();
@@ -162,6 +152,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
             } else {
                 user.setSync_status(Constant.SYNC_STATUS_FAILED);
                 object.saveUserData(user);
+                getSound(this,2);
                 Toast.makeText(this, "Updated data will be sync", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "SaveEditDetail: " + user.getSync_status());
             }
@@ -182,7 +173,10 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
         if (name.isEmpty() || name.length() > 32) {
             ed_name.setError("Please Enter valid name");
             valid = false;
-        } else if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        }else if (!name.matches("[a-z A-Z0-9.@]*")) {
+            ed_name.setError("Please enter valid name without special symbol");
+            valid = false;
+        }else if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             ed_email.setError("Please Enter valid Email");
             valid = false;
         }

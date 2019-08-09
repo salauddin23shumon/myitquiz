@@ -38,11 +38,10 @@ import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
 import com.project.s1s1s1.myitquiz.utility.QuizViewAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import pl.droidsonroids.gif.GifImageView;
-
-import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 import static com.project.s1s1s1.myitquiz.utility.Utils.setBtnAnim;
 
 
@@ -57,7 +56,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private String subject, answer = null, optionA, optionB, optionC, optionD;
     private DbAssetHelper helper;
     private User user;
-    private int visibility = 0, timer = 101, numberOfQuestion = 0, correct_ans = 0, displayQuiz = 1, soundValue;
+    private int visibility = 0, timer = 101, correct_ans = 0, displayQuiz = 0, soundValue;
     private List<Quiz> quizList = new ArrayList<>();
     MediaPlayer mediaPlayer, start_sound, wrong_beep, right_beep;
     GifImageView gifImageView;
@@ -139,11 +138,11 @@ public class PlayGameActivity extends AppCompatActivity {
             helper = new DbAssetHelper(this, "dld.db", "dld");
         }
         quizList = helper.getAllQuestions();
+        Collections.shuffle(quizList);
         Log.e(TAG, "onCreate: " + quizList.size());
     }
 
     public void executeQuiz(View view) {
-        numberOfQuestion++;
         if (answer != null) {
             setViewResult(view);
         }
@@ -177,7 +176,7 @@ public class PlayGameActivity extends AppCompatActivity {
                         timer = timer - 1;
                         donutProgress.setProgress(timer);
                         remainingMillis = millisUntilFinished;
-                        Log.e(TAG, "onTick: " + remainingMillis);
+//                        Log.e(TAG, "onTick: " + remainingMillis);
                     }
 
                     @Override
@@ -246,11 +245,15 @@ public class PlayGameActivity extends AppCompatActivity {
             default:
                 System.out.println("no match");
         }
-        score.setQuestionFaced(numberOfQuestion);
+        score.setQuestionFaced(displayQuiz);
         score.setCorrectAns(correct_ans);
-        score.setWrongAns(numberOfQuestion - correct_ans);
+        score.setWrongAns(displayQuiz - correct_ans);
         user.setUserScore(score);
         preferenceObject.saveUserData(user);
+
+        Log.d(TAG, "displayQuiz: "+displayQuiz);
+        Log.d(TAG, "correct_ans: "+correct_ans);
+        Log.d(TAG, "wrong : "+(displayQuiz - correct_ans));
     }
 
     private void setViewResult(View view) {
@@ -299,9 +302,9 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void makeDbReadable(DbAssetHelper helper) {
         int rowCount = helper.rowCount();
-        if (displayQuiz == rowCount) {
+        if (displayQuiz == quizList.size()) {
+            displayQuiz -= 1;
             openNxtActivity(LevelCompletedSplash.class);
-            displayQuiz = 0;
         } else {
             readDb(quizList);
             displayQuiz++;
@@ -309,7 +312,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void readDb(List<Quiz> quizList) {
-        Log.e(TAG, "readDb: " + displayQuiz);
+        Log.e(TAG, "displayQuiz: " + displayQuiz);
         String question = quizList.get(displayQuiz).getQuestion();
         optionA = quizList.get(displayQuiz).getOptionA();
         optionB = quizList.get(displayQuiz).getOptionB();
@@ -369,7 +372,7 @@ public class PlayGameActivity extends AppCompatActivity {
                     alertDialog.dismiss();
                 } else {
                     Log.e(TAG, "showResumeDialog: else");
-                    setTimer(remainingMillis - 1, countDownInterval, 1);
+                    setTimer(remainingMillis, countDownInterval, 1);
                     alertDialog.dismiss();
                 }
             }
@@ -401,7 +404,7 @@ public class PlayGameActivity extends AppCompatActivity {
         builder.setNegativeButton(Html.fromHtml("<font color='#FA0707'>No</font>"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                setTimer(remainingMillis - 1, countDownInterval, 1);
+                setTimer(remainingMillis, countDownInterval, 1);
                 Log.e(TAG, "alertCancle: " + remainingMillis);
             }
         });
@@ -409,6 +412,7 @@ public class PlayGameActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 startActivity(new Intent(PlayGameActivity.this, QuizActivity.class));
+                finish();
             }
         });
         builder.show();
@@ -427,8 +431,8 @@ public class PlayGameActivity extends AppCompatActivity {
             btnPlay.clearAnimation();
             executeQuiz(view);
             start_sound.start();
-            millisInFuture = 100000;
-//            millisInFuture = 20000;
+//            millisInFuture = 100000;
+            millisInFuture = 40000;
             setTimer(millisInFuture, countDownInterval, 5);
         }
     }

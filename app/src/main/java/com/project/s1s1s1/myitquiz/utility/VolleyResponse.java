@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import static com.android.volley.VolleyLog.TAG;
+import static com.project.s1s1s1.myitquiz.utility.Utils.getSound;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getStringImage;
 
 public class VolleyResponse {
@@ -55,7 +56,6 @@ public class VolleyResponse {
                             if (success.equals("1")) {
                                 Log.e(TAG, "onResponse: " + success);
                                 for (int i = 0; i < jsonArray.length(); i++) {
-
                                     JSONObject object = jsonArray.getJSONObject(i);
 
                                     final String strName = object.getString("username").trim();
@@ -164,9 +164,11 @@ public class VolleyResponse {
                             if (result.equals("1")) {
                                 Toast.makeText(context, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 getUserDetailFromServer(context, user);
+                                getSound(context,1).start();
                             } else {///query error
                                 Toast.makeText(context, "" + jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 getUserDetailFromServer(context, user);
+                                getSound(context,0).start();
                             }
 
                         } catch (JSONException e) { ///database or api or json internal error

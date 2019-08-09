@@ -18,10 +18,10 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class StartSplash extends AppCompatActivity {
 
-    SessionManager sessionManager;
-    Intent intent;
-    MediaPlayer mediaPlayer, mediaPlayer2;
-    GifImageView gifImageView1, gifImageView2;
+    private SessionManager sessionManager;
+    private Intent intent;
+    private MediaPlayer mediaPlayer, mediaPlayer2;
+    private GifImageView gifImageView1, gifImageView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +31,9 @@ public class StartSplash extends AppCompatActivity {
         gifImageView1 = findViewById(R.id.gifview1);
         gifImageView2 = findViewById(R.id.gifview2);
         sessionManager = new SessionManager(this);
-        mediaPlayer = MediaPlayer.create(this, R.raw.robot3);   //initializing
-        mediaPlayer2 = MediaPlayer.create(this, R.raw.intro1);
+        mediaPlayer = MediaPlayer.create(this, R.raw.robot_intro);   //initializing
+        mediaPlayer2 = MediaPlayer.create(this, R.raw.intro_app);
         mediaPlayer2.start();
-
-//        final ImageView imgv1 = (ImageView) findViewById(R.id.splash);
 
 
         new Handler().postDelayed(new Runnable(){
@@ -47,15 +45,6 @@ public class StartSplash extends AppCompatActivity {
 
             }
         }, 4 * 900);
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run(){
-//
-//
-//            }
-//        }, 3 * 1000);
-
 
         Thread th = new Thread() {
             @Override
