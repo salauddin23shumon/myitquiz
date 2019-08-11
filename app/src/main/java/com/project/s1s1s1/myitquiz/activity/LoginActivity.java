@@ -2,9 +2,6 @@ package com.project.s1s1s1.myitquiz.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaPlayer;
-import android.os.AsyncTask;
 
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -33,20 +30,17 @@ import com.project.s1s1s1.myitquiz.utility.SessionManager;
 import com.project.s1s1s1.myitquiz.dataModel.Score;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 import com.project.s1s1s1.myitquiz.utility.Constant;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.net.*;
 import java.util.concurrent.ExecutionException;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getSound;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getStringImage;
 import static com.project.s1s1s1.myitquiz.utility.Utils.isNetworkAvailable;
@@ -62,13 +56,13 @@ public class LoginActivity extends AppCompatActivity {
     private String sName, sEmail, sId, sPhoto, name, password;
     private Score userScore;
     private static final String URL_LOGIN = "api_login.php";
-    private PreferenceObject userObject;
+    private UserPreference userObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userObject = new PreferenceObject(this);
+        userObject = new UserPreference(this);
 
         loading = findViewById(R.id.loading);
         ed_name = findViewById(R.id.name);
@@ -136,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                 afterLoginSuccess();
             } else {
                 // username / password doesn't match&
-                afterLoginFail("Username/Password is incorrect");
+                afterLoginFail("Username/Password is incorrectTV");
             }
         } else {
             afterLoginFail("You have no Account. Please Create an Account");
@@ -255,7 +249,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void saveData(Bitmap photo) {
-        PreferenceObject object = new PreferenceObject(this);
+        UserPreference object = new UserPreference(this);
         String stringImage = getStringImage(photo);
         User user = new User(sId, sName, sEmail, password, stringImage, userScore);
         object.saveUserData(user);

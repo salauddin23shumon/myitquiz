@@ -25,7 +25,7 @@ import com.project.s1s1s1.myitquiz.utility.SessionManager;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 import com.project.s1s1s1.myitquiz.utility.Constant;
 import com.project.s1s1s1.myitquiz.utility.SyncData;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 // custom alertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
                 builder.setTitle(Html.fromHtml("<font color='#f71a03'>To create new account, your all previous data will be reset from the phone</font>"));
-                builder.setMessage(Html.fromHtml("<font color='#04920A'>Are you sure want to create new account?</font>"));
+                builder.setMessage(Html.fromHtml("<font color='#04920A'>Are commentTV sure want to create new account?</font>"));
                 builder.setPositiveButton(Html.fromHtml("<font color='#000000'>Yes</font>"), dialogClickListener);
                 builder.setNegativeButton(Html.fromHtml("<font color='#FA0707'>No</font>"), dialogClickListener);
                 builder.create();
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        PreferenceObject object=new PreferenceObject(this);
+        UserPreference object=new UserPreference(this);
         User user = object.getUserData();
         int status = user.getSync_status();             // calling dataSync class
         Log.d(TAG, "onStart: status "+status);

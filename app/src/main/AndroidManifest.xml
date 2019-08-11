@@ -23,7 +23,8 @@
 
         <activity android:name=".activity.QuizActivity"
             android:theme="@style/AppThemeQuiz"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activity.MainActivity"
             android:label="MyITquiz"

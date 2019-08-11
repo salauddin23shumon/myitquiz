@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.s1s1s1.myitquiz.R;
 import com.project.s1s1s1.myitquiz.dataModel.User;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 import com.project.s1s1s1.myitquiz.utility.ScoreAdapter;
 import com.project.s1s1s1.myitquiz.utility.VolleyResponse;
 
@@ -26,7 +26,7 @@ public class ScoreCardActivity extends AppCompatActivity implements VolleyRespon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        PreferenceObject object = new PreferenceObject(this);
+        UserPreference object = new UserPreference(this);
         user = object.getUserData();
         getUserDetailFromServer(this, user);
 

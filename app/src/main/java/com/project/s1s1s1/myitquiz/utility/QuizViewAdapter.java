@@ -22,7 +22,7 @@ public class QuizViewAdapter extends RecyclerView.Adapter<QuizViewAdapter.MyView
 
     private Context context;
     private List<QuizMenu> quizMenuList;
-    public final static String Message = "com.project.s1s1s1.myitquiz.MESSAGE";
+    public final static String Message = "com.project.s1s1s1.myitquiz.MESSAGE";     //key name
 
     public QuizViewAdapter(Context context, List<QuizMenu> quizMenuList) {
         this.context = context;
@@ -41,14 +41,13 @@ public class QuizViewAdapter extends RecyclerView.Adapter<QuizViewAdapter.MyView
         final QuizMenu singleQuiz = quizMenuList.get(position);
         final String subject = singleQuiz.getSubject();
         holder.itemIV.setImageResource(singleQuiz.getThumbnail());
-        holder.itemIV.setAlpha(200);    // transparency
+        holder.itemIV.setAlpha(188);    // transparency
         holder.quizCV.setCardBackgroundColor(R.drawable.rainbow_bg);
         holder.itemIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(context, ""+singleQuiz.getId(), Toast.LENGTH_SHORT).show();
                 context.startActivity(new Intent(context, PlayGameActivity.class).putExtra(Message, subject).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-                ((Activity)context).finish();
+                ((Activity) context).finish();
             }
         });
 

@@ -34,7 +34,7 @@ import com.project.s1s1s1.myitquiz.dataModel.Score;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 import com.project.s1s1s1.myitquiz.splashScreen.GameOverSplash;
 import com.project.s1s1s1.myitquiz.splashScreen.LevelCompletedSplash;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 import com.project.s1s1s1.myitquiz.utility.QuizViewAdapter;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class PlayGameActivity extends AppCompatActivity {
     Handler gameHandler;
     Runnable delayRunnable;
     Dialog alertDialog;
-    private PreferenceObject preferenceObject;
+    private UserPreference userPreference;
     private boolean isGameActive;
     TelephonyManager mgr;
 
@@ -72,8 +72,8 @@ public class PlayGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
         gameHandler = new Handler();
-        preferenceObject = new PreferenceObject(this);
-        user = preferenceObject.getUserData();
+        userPreference = new UserPreference(this);
+        user = userPreference.getUserData();
 
         subject = getIntent().getStringExtra(QuizViewAdapter.Message);
         createDb();
@@ -249,7 +249,7 @@ public class PlayGameActivity extends AppCompatActivity {
         score.setCorrectAns(correct_ans);
         score.setWrongAns(displayQuiz - correct_ans);
         user.setUserScore(score);
-        preferenceObject.saveUserData(user);
+        userPreference.saveUserData(user);
 
         Log.d(TAG, "displayQuiz: "+displayQuiz);
         Log.d(TAG, "correct_ans: "+correct_ans);
@@ -399,7 +399,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private void showExitDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
         builder.setCancelable(false);
-        builder.setTitle("Are you sure want to exit from the quiz? ");
+        builder.setTitle("Are commentTV sure want to exit from the quiz? ");
 
         builder.setNegativeButton(Html.fromHtml("<font color='#FA0707'>No</font>"), new DialogInterface.OnClickListener() {
             @Override
@@ -431,8 +431,8 @@ public class PlayGameActivity extends AppCompatActivity {
             btnPlay.clearAnimation();
             executeQuiz(view);
             start_sound.start();
-//            millisInFuture = 100000;
-            millisInFuture = 40000;
+            millisInFuture = 100000;
+//            millisInFuture = 40000;
             setTimer(millisInFuture, countDownInterval, 5);
         }
     }

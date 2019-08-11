@@ -1,22 +1,18 @@
 package com.project.s1s1s1.myitquiz.activity;
 
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.s1s1s1.myitquiz.R;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 import com.project.s1s1s1.myitquiz.utility.Constant;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 import com.project.s1s1s1.myitquiz.utility.VolleyResponse;
 
 import static com.project.s1s1s1.myitquiz.utility.Utils.isNetworkAvailable;
@@ -24,22 +20,22 @@ import static com.project.s1s1s1.myitquiz.utility.VolleyResponse.updateUser;
 
 public class ResultActivity extends AppCompatActivity implements VolleyResponse.NewObj {
 
-    TextView correct, incorrect, attempted, score, you;
+    TextView correctTV, incorrectTV, attemptedTV, scoreTV, commentTV;
     ImageView imageView1, imageView2, imageView3, imageView4;
-    int correct_ans = 0, incorr_ans = 0, attempt = 0, scor = 0;
+    int correct_ans = 0, incorr_ans = 0, attempt = 0, score = 0;
     User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        PreferenceObject object=new PreferenceObject(this);
+        UserPreference object = new UserPreference(this);
 
-        user=object.getUserData();
-        if (isNetworkAvailable(this)){
+        user = object.getUserData();
+        if (isNetworkAvailable(this)) {
             user.setSync_status(Constant.SYNC_STATUS_OK);
-            updateUser(this,user);
-        }else {
+            updateUser(this, user);
+        } else {
             user.setSync_status(Constant.SYNC_STATUS_FAILED);
             object.saveUserData(user);
         }
@@ -54,36 +50,36 @@ public class ResultActivity extends AppCompatActivity implements VolleyResponse.
         imageView4 = findViewById(R.id.five_eggs);
 
 
-        scor = 10 * correct_ans;
-        correct = findViewById(R.id.correct);
-        incorrect = findViewById(R.id.incorrect);
-        attempted = findViewById(R.id.attempted);
-        score = findViewById(R.id.score);
-        you = findViewById(R.id.you);
+        score = 10 * correct_ans;
+        correctTV = findViewById(R.id.correct);
+        incorrectTV = findViewById(R.id.incorrect);
+        attemptedTV = findViewById(R.id.attempted);
+        scoreTV = findViewById(R.id.score);
+        commentTV = findViewById(R.id.you);
 
 
-        attempted.setText("  " + attempt);
-        correct.setText("  " + correct_ans);
-        incorrect.setText("  " + incorr_ans);
-        score.setText("Score  :    " + scor);
+        attemptedTV.setText("  " + attempt);
+        correctTV.setText("  " + correct_ans);
+        incorrectTV.setText("  " + incorr_ans);
+        scoreTV.setText("Score  :    " + score);
         if (correct_ans > 0) {
             float x1 = (correct_ans * 100) / attempt;
 
             if (x1 >= 75) {
-                you.setText("Excellent");
+                commentTV.setText(R.string.cmnt_excellent);
                 imageView1.setVisibility(View.VISIBLE);
             } else if (x1 >= 50 && x1 < 75) {
-                you.setText("You are an average Quizzer");
+                commentTV.setText(R.string.cmnt_avg);
                 imageView2.setVisibility(View.VISIBLE);
             } else if (x1 >= 25 && x1 < 50) {
-                you.setText("Not Good Enough");
+                commentTV.setText(R.string.cmnt_below_avg);
                 imageView3.setVisibility(View.VISIBLE);
             } else {
-                you.setText("Have to work more");
+                commentTV.setText(R.string.cmnt_loser);
                 imageView4.setVisibility(View.VISIBLE);
             }
         } else {
-            you.setText("Have to work more");
+            commentTV.setText(R.string.cmnt_loser);
             imageView4.setVisibility(View.VISIBLE);
         }
 
@@ -107,7 +103,8 @@ public class ResultActivity extends AppCompatActivity implements VolleyResponse.
     }
 
     @Override
-    public void onBackPressed() { }
+    public void onBackPressed() {
+    }
 
 
     @Override
@@ -117,12 +114,7 @@ public class ResultActivity extends AppCompatActivity implements VolleyResponse.
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
     public void newProfileUser(User user) {
-        this.user=user;
+        this.user = user;
     }
 }

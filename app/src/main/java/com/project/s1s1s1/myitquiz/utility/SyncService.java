@@ -42,9 +42,9 @@ public class SyncService extends JobService {
 
     private void syncData(final JobParameters jobParameters) {
 
-        final PreferenceObject preferenceObject = new PreferenceObject(getApplicationContext());
-        final User user = preferenceObject.getUserData();
-        if (preferenceObject.getUserData() != null) {
+        final UserPreference userPreference = new UserPreference(getApplicationContext());
+        final User user = userPreference.getUserData();
+        if (userPreference.getUserData() != null) {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.BASE_URL + VolleyResponse.UPDATE_PROFILE, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -53,7 +53,7 @@ public class SyncService extends JobService {
                         String success = jsonObject.getString("success");
                         if (success.equals("1")) {
                             user.setSync_status(Constant.SYNC_STATUS_OK);
-                            preferenceObject.saveUserData(user);
+                            userPreference.saveUserData(user);
                             new SyncData(getApplicationContext()).cancelJob();  // cancelling the job and also repetition
                             message = jsonObject.getString("message");
                             new NotificationHelper(getApplicationContext(), title, message).getNotification();
@@ -62,7 +62,7 @@ public class SyncService extends JobService {
                             Log.d(TAG, "onResponse: " + jsonObject.getString("message"));
                             message = jsonObject.getString("message")+". Profile update failed";
                             new NotificationHelper(getApplicationContext(), title, message).getNotification();
-                            preferenceObject.saveUserData(oldUserData());
+                            userPreference.saveUserData(oldUserData());
                             new SyncData(getApplicationContext()).cancelJob();  // cancelling the job and also repetition
                         }
                     } catch (JSONException e) {

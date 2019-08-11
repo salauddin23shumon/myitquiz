@@ -24,16 +24,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.project.s1s1s1.myitquiz.R;
-import com.project.s1s1s1.myitquiz.utility.SessionManager;
 import com.project.s1s1s1.myitquiz.dataModel.QuizMenu;
 import com.project.s1s1s1.myitquiz.dataModel.User;
+import com.project.s1s1s1.myitquiz.utility.SessionManager;
 import com.project.s1s1s1.myitquiz.utility.Constant;
-import com.project.s1s1s1.myitquiz.utility.SyncData;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 import com.project.s1s1s1.myitquiz.utility.QuizViewAdapter;
+import com.project.s1s1s1.myitquiz.utility.SyncData;
 import static com.project.s1s1s1.myitquiz.utility.Utils.getBitmapImage;
-import static com.project.s1s1s1.myitquiz.utility.Utils.getMainTheme;
-
 
 public class QuizActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,10 +42,10 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
     private TextView nav_header_name;
     private ImageView nav_header_image;
     private SessionManager sessionManager;
+    private MediaPlayer mediaPlayer;
     private SharedPreferences sharedPreferences_sound;
     private User user;
-    private PreferenceObject object;
-
+    private UserPreference userPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,41 +55,41 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
         sessionManager.checkLogin();
         adapter = new QuizViewAdapter(this, QuizMenu.getAllQuiz());
         viewConfig();
-        object = new PreferenceObject(this);
-        user = object.getUserData();
+        userPreference = new UserPreference(this);
+        user = userPreference.getUserData();
         setUserInfo(user);
         soundConfig();
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-//        if (mediaPlayer!=null) {
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        if (mediaPlayer != null) {
 //            outState.putInt("position", mediaPlayer.getCurrentPosition());
-//            mediaPlayer.pause();
+//            if (mediaPlayer.isPlaying())
+//                mediaPlayer.pause();
 //        }
 //
 //        Log.d(TAG, "onSaveInstanceState: called");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        int pos = savedInstanceState.getInt("position");
-//        if (mediaPlayer!=null) {
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        int pos = savedInstanceState.getInt("position");
+//        if (mediaPlayer != null) {
 //            mediaPlayer.seekTo(pos);
 //        }
-//        Log.d(TAG, "onRestoreInstanceState: "+pos);
-        super.onRestoreInstanceState(savedInstanceState);
-    }
+//        Log.d(TAG, "onRestoreInstanceState: " + pos);
+//        super.onRestoreInstanceState(savedInstanceState);
+//    }
 
     private void soundConfig() {
         sharedPreferences_sound = getSharedPreferences("Sound_Pref", MODE);
+        mediaPlayer = MediaPlayer.create(this, R.raw.piano_background);
+        mediaPlayer.setLooping(true);
         //To play background sound
         if (sharedPreferences_sound.getInt("Sound", 0) == 0) {
-            getMainTheme(this).start();
-//            mediaPlayer = MediaPlayer.create(this, R.raw.piano_background);
-//            mediaPlayer.start();
-//            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
         }
     }
 
@@ -169,18 +167,18 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPause() {
         super.onPause();
-//        if (sharedPreferences_sound.getInt("Sound", 0) == 0)
-//            mediaPlayer.pause();
+        if (sharedPreferences_sound.getInt("Sound", 0) == 0 && mediaPlayer.isPlaying())
+            mediaPlayer.pause();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG, "onRestart: called");
         if (sharedPreferences_sound.getInt("Sound", 0) == 0)
-//            mediaPlayer.start();
-        object = new PreferenceObject(this);      //****updating user
-        User newUser = object.getUserData();
+            mediaPlayer.start();
+        Log.d(TAG, "value: " + sharedPreferences_sound.getInt("Sound", 0));
+        userPreference = new UserPreference(this);      //****updating user
+        User newUser = userPreference.getUserData();
         setUserInfo(newUser);
         syncUserData(newUser);
     }
@@ -188,8 +186,8 @@ public class QuizActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart: called");
         syncUserData(user);
+
     }
 
     private void syncUserData(User user) {

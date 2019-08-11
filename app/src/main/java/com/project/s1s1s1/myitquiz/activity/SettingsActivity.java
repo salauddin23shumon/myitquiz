@@ -15,7 +15,7 @@ import com.project.s1s1s1.myitquiz.R;
 
 public class SettingsActivity extends AppCompatActivity {
     SharedPreferences  sharedPreferences_sound;
-    SharedPreferences.Editor edit_score, edit_sound;
+    SharedPreferences.Editor  edit_sound;
     Switch  soundSW;
 
     @Override
@@ -31,10 +31,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         sharedPreferences_sound = getSharedPreferences("Sound_Pref", Context.MODE_PRIVATE);
         edit_sound = sharedPreferences_sound.edit();
-
-//        final Button sound = findViewById(R.id.play_sound);
-//        Button reset = findViewById(R.id.reset);
-
 
         if (sharedPreferences_sound.getInt("Sound", 0) == 0) {
             soundSW.setChecked(false);

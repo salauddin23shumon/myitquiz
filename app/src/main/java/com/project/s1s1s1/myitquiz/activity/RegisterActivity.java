@@ -1,10 +1,11 @@
 package com.project.s1s1s1.myitquiz.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ import com.project.s1s1s1.myitquiz.R;
 import com.project.s1s1s1.myitquiz.dataModel.Score;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 import com.project.s1s1s1.myitquiz.utility.Constant;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 import com.project.s1s1s1.myitquiz.utility.SessionManager;
 
 import org.json.JSONException;
@@ -121,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
         initialize();
         if (!validate()) {
             Toast.makeText(this, error_stmt, Toast.LENGTH_SHORT).show();
-            getSound(this,0).start();
+            getSound(this, 0).start();
         } else {
             jsonTask();
         }
@@ -160,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void jsonTask() {
-        final PreferenceObject object = new PreferenceObject(this);
+        final UserPreference userPreference = new UserPreference(this);
         loading.setVisibility(View.VISIBLE);
         btn_regist.setVisibility(View.GONE);
         error_stmt = "";
@@ -176,12 +177,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (result.equals("1")) {
                                     Toast.makeText(getApplicationContext(), "New Account Created", Toast.LENGTH_SHORT).show();
 
-                                    getSound(RegisterActivity.this,1).start();
+                                    getSound(RegisterActivity.this, 1).start();
                                     id = jsonObject.getString("message").trim(); /// getting id from db via api
                                     Log.d(TAG, "id: " + id);
                                     user = new User(id, name, email, password, image, userScore());
                                     createSession(id, name, email);
-                                    object.saveUserData(user);
+                                    userPreference.saveUserData(user);
 
                                     resetEditor();
                                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
@@ -222,6 +223,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void createSession(String id, String name, String email) {
         sessionManager.createSession(id, name, email);
+        SharedPreferences preferences = getSharedPreferences("Sound_Pref", Context.MODE_PRIVATE);
+        preferences.edit().putInt("Sound", 0).apply();
     }
 
     private Score userScore() {
@@ -264,7 +267,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void afterLoginFail(String errMsg) {
         loading.setVisibility(View.GONE);
         btn_regist.setVisibility(View.VISIBLE);
-        getSound(this,0).start();
+        getSound(this, 0).start();
         Toast.makeText(RegisterActivity.this, "Error!!! " + errMsg, Toast.LENGTH_SHORT).show();
     }
 

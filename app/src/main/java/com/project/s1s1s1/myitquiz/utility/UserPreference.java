@@ -7,11 +7,11 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 
-public class PreferenceObject {
+public class UserPreference {
     private Context context;
     private SharedPreferences preferences;
 
-    public PreferenceObject(Context context) {
+    public UserPreference(Context context) {
         this.context = context;
         preferences = context.getSharedPreferences("CachedLogin", Context.MODE_PRIVATE);
     }
@@ -22,9 +22,6 @@ public class PreferenceObject {
         String json=gson.toJson(user);
         editor.putString("user",json);
         editor.apply();
-        /// creating session for the user
-//        SessionManager sessionManager = new SessionManager(context);
-//        sessionManager.createSession(user.getId(), user.getUserName(), user.getEmail());
     }
 
 

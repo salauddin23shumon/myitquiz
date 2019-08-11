@@ -18,7 +18,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 
-import com.project.s1s1s1.myitquiz.activity.LoginActivity;
 import com.project.s1s1s1.myitquiz.dataModel.Score;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 
@@ -40,7 +39,7 @@ public class VolleyResponse {
     private static NewObj newObj;
 
     public static void getUserDetailFromServer(final Context context, final User oldUser) {
-        final PreferenceObject preferenceObject = new PreferenceObject(context);
+        final UserPreference userPreference = new UserPreference(context);
         newObj = (NewObj) context;  // have to implement
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.BASE_URL + URL_READ,
                 new Response.Listener<String>() {
@@ -86,7 +85,7 @@ public class VolleyResponse {
                                         newUser.setEmail(strEmail);
                                         newUser.setPhoto(getStringImage(bitmap));
                                         newUser.setUserScore(newScore);
-                                        preferenceObject.saveUserData(newUser); //saving updated data
+                                        userPreference.saveUserData(newUser); //saving updated data
                                         newObj.newProfileUser(newUser); // interface calling
 
                                     } catch (ExecutionException e) {

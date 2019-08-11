@@ -91,9 +91,4 @@ public class Utils {
             return MediaPlayer.create(context, R.raw.error_all);
     }
 
-    public static MediaPlayer getMainTheme(Context context){
-        MediaPlayer music=MediaPlayer.create(context, R.raw.piano_background);
-        music.setLooping(true);
-        return music;
-    }
 }

@@ -2,17 +2,14 @@ package com.project.s1s1s1.myitquiz.activity;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.util.Patterns;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +28,7 @@ import com.project.s1s1s1.myitquiz.R;
 import com.project.s1s1s1.myitquiz.dataModel.User;
 import com.project.s1s1s1.myitquiz.utility.Constant;
 import com.project.s1s1s1.myitquiz.utility.SyncData;
-import com.project.s1s1s1.myitquiz.utility.PreferenceObject;
+import com.project.s1s1s1.myitquiz.utility.UserPreference;
 import com.project.s1s1s1.myitquiz.utility.VolleyResponse;
 
 import java.io.IOException;
@@ -58,14 +55,14 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
     private static User oldUser;        //copying previous value
     private ProgressDialog progressDialog;
     private CircleImageView profile_image;
-    private PreferenceObject object;
+    private UserPreference object;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        object = new PreferenceObject(this);
+        object = new UserPreference(this);
         user = object.getUserData();
         oldUser = object.getUserData();           /// copying user data if offline update failed due query mismatch
         progressDialog = new ProgressDialog(this);
@@ -152,7 +149,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
             } else {
                 user.setSync_status(Constant.SYNC_STATUS_FAILED);
                 object.saveUserData(user);
-                getSound(this,2);
+                getSound(this, 2);
                 Toast.makeText(this, "Updated data will be sync", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "SaveEditDetail: " + user.getSync_status());
             }
@@ -173,10 +170,10 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
         if (name.isEmpty() || name.length() > 32) {
             ed_name.setError("Please Enter valid name");
             valid = false;
-        }else if (!name.matches("[a-z A-Z0-9.@]*")) {
+        } else if (!name.matches("[a-z A-Z0-9.@]*")) {
             ed_name.setError("Please enter valid name without special symbol");
             valid = false;
-        }else if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             ed_email.setError("Please Enter valid Email");
             valid = false;
         }
