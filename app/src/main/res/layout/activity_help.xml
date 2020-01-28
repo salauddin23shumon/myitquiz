@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/background70"
+    android:background="@drawable/dm6"
     tools:context=".activity.HelpActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -32,7 +32,7 @@
          android:padding="20dp"
          android:textSize="24sp"
          android:fontFamily="casual"
-         android:textColor="#56E45C"
+         android:textColor="#25D1B7"
          android:textStyle="bold"
          android:text="@string/help_note"
          android:textAlignment="viewStart"

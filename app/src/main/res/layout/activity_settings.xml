@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@drawable/background80"
+    android:background="@drawable/dm5"
 
     tools:context=".activity.SettingsActivity">
 
@@ -39,7 +39,7 @@
             android:id="@+id/soundTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="#F81111"
+            android:textColor="#FDFDFD"
             android:text="Mute Quiz Music"
             android:gravity="center"
             android:layout_weight="4"

@@ -159,14 +159,13 @@ public class LoginActivity extends AppCompatActivity {
         boolean valid = true;
         if (name.isEmpty() || name.length() > 32) {
             ed_name.setError("Enter valid name");
+            ed_name.requestFocus();
             valid = false;
-        } else
-            ed_name.setError(null);
-
-        if (password.isEmpty()) {
+        } else if (password.isEmpty()) {
             ed_password.setError("Please Enter Password");
+            ed_password.requestFocus();
             valid = false;
-        } else ed_password.setError(null);
+        }
         return valid;
     }
 

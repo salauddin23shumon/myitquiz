@@ -26,7 +26,7 @@
 
 
     <!-- Base application theme. -->
-    <style name="AppThemeLogin" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeLogin" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

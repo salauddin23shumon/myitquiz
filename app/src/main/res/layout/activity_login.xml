@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background50">
+    android:background="@drawable/dm">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Login"
-                android:textColor="#E6FF00"
+                android:textColor="#FFFFFD"
                 android:textSize="30sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -49,7 +49,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/border_txtview"
+                android:background="@drawable/bg_edit_text"
                 app:hintTextAppearance="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -77,7 +77,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/border_txtview"
+                android:background="@drawable/bg_edit_text"
                 app:hintTextAppearance="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -131,9 +131,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textlayout"
-                android:background="@drawable/glossy_btn_green"
+                android:background="@drawable/btn_clear_green"
                 android:text="LOGIN"
-                android:textColor="@color/colorText2"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -143,9 +142,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/layout_mid"
             android:layout_marginTop="40dp"
-            android:background="@drawable/glossy_btn_red"
+            android:background="@drawable/btn_clear_red"
             android:text="Signup"
-            android:textColor="#0A0A0A"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"/>
 

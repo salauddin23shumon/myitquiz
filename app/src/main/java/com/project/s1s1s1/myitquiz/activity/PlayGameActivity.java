@@ -399,7 +399,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private void showExitDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
         builder.setCancelable(false);
-        builder.setTitle("Are commentTV sure want to exit from the quiz? ");
+        builder.setTitle("Are you sure you want to exit from the quiz? ");
 
         builder.setNegativeButton(Html.fromHtml("<font color='#FA0707'>No</font>"), new DialogInterface.OnClickListener() {
             @Override

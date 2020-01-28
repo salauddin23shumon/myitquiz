@@ -108,6 +108,7 @@ public class ProfileActivity extends AppCompatActivity implements VolleyResponse
     ///set btn color and cursor
     private void btn_update_setting() {
         ed_name.setFocusableInTouchMode(true);
+        ed_name.requestFocus();
         ed_email.setFocusableInTouchMode(true);
         ed_name.setSelection(ed_name.getText().length());
         ed_email.setSelection(ed_email.getText().length());

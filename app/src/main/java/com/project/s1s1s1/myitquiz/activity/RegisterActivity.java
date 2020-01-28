@@ -246,15 +246,19 @@ public class RegisterActivity extends AppCompatActivity {
         boolean valid = true;
         if (name.isEmpty() || name.length() > 32) {
             ed_name.setError("Please Enter valid name");
+            ed_name.requestFocus();
             valid = false;
         } else if (!name.matches("[a-z A-Z0-9.@]*")) {
             ed_name.setError("Please enter valid name without special symbol");
+            ed_name.requestFocus();
             valid = false;
         } else if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             ed_email.setError("Please Enter valid Email");
+            ed_email.requestFocus();
             valid = false;
         } else if (password.isEmpty()) {
             ed_password.setError("Please Enter Password");
+            ed_password.requestFocus();
             valid = false;
         } else if (image == null) {
             error_stmt = "Please select a profile photo";

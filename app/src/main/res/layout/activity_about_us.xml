@@ -6,11 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background71">
+    android:background="@drawable/dm7">
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".AboutUsActivity">
@@ -56,9 +56,9 @@
             android:layout_below="@+id/img"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3dp"
             android:text="@string/app_name"
-            android:textColor="#FC0808"
+            android:textColor="#FDF9F9"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/q"
             android:layout_centerHorizontal="true"
-            android:layout_margin="5dp"
+            android:layout_margin="3dp"
             android:textColor="#EEE046"
             android:text="version 1.0.0"
             android:textSize="24sp" />
@@ -76,14 +76,16 @@
         <TextView
             android:id="@+id/note"
             android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="3dp"
             android:textStyle="bold"
             android:textColor="#97F72B"
-            android:gravity="center"
+            android:textAlignment="center"
             android:text="@string/note"
             android:textSize="17sp"
-            android:layout_below="@+id/version"/>
+            android:layout_below="@+id/version"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/credits"
@@ -95,15 +97,16 @@
             android:textSize="26sp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_below="@+id/note"/>
+            android:layout_below="@+id/note"
+            android:layout_marginBottom="5dp"/>
 
         <android.lib.widget.verticalmarqueetextview.VerticalMarqueeTextView
             android:layout_width="wrap_content"
-            android:layout_height="140dp"
+            android:layout_height="120dp"
             android:background="#FCEB9E"
-            android:paddingTop="40dp"
+            android:paddingTop="30dp"
             android:textAlignment="center"
-            android:paddingBottom="40dp"
+            android:paddingBottom="30dp"
             marquee:marqueeSpeed="15"
             marquee:textSize="8sp"
             marquee:textColor="#C20606"

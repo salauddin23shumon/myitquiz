@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background65">
+    android:background="@drawable/dm2">
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -65,10 +65,10 @@
                 style="@style/Widget.AppCompat.ActionButton.CloseMode"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@drawable/glossy_btn_blue"
+                android:background="@drawable/btn_clear_red"
                 android:layout_gravity="center"
                 android:text="Edit Photo"
-                android:textColor="#000"
+                android:textColor="#FFFEFE"
                 android:visibility="gone"/>
 
         </LinearLayout>
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:orientation="horizontal"
-                android:background="@drawable/border_txtview"
+                android:background="@drawable/bg_edit_text"
                 android:padding="5dp">
 
                 <ImageView
@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/border_txtview">
+                android:background="@drawable/bg_edit_text">
 
                 <ImageView
                     android:src="@drawable/ic_email_black_24dp"
@@ -147,9 +147,9 @@
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_edit"
-                    android:background="@drawable/glossy_btn_green"
+                    android:background="@drawable/btn_clear_green"
                     android:text="Edit Profile"
-                    android:textColor="#090a0a"
+                    android:textColor="#F7FAFA"
                     android:layout_centerHorizontal="true"/>
 
                 <Button
@@ -158,8 +158,8 @@
                     android:layout_centerHorizontal="true"
                     android:id="@+id/btn_update"
                     android:text="Update Profile"
-                    android:textColor="#000000"
-                    android:background="@drawable/mybutton_maroon"
+                    android:textColor="#FAF7F7"
+                    android:background="@drawable/btn_clear_violet"
                     android:visibility="gone"/>
             </RelativeLayout>
 

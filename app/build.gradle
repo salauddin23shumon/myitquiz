@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    compileSdkVersion 29  
     defaultConfig {
         applicationId "com.project.s1s1s1.myitquiz"
         minSdkVersion 17
