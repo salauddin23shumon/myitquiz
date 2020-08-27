@@ -1,0 +1,7 @@
+* login2.php
+* register5.php
+* update_profile.php
+* read_detail.php
+
+these 4 files are used to communicate between android and database,
+and has no internal connection with other php files except dbConnection.php

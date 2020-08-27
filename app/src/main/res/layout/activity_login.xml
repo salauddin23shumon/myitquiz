@@ -116,36 +116,61 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textlayout"
             android:layout_marginTop="50dp"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
 
-            <ProgressBar
-                android:id="@+id/loading"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_gravity="center"
-                android:visibility="gone" />
+                android:text="Already have account? Please login"
+                android:textColor="#fff"
+                android:textSize="18sp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ProgressBar
+                    android:id="@+id/loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textlayout"
+                    android:background="@drawable/btn_clear_green"
+                    android:text="LOGIN"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:text="Not register? Please signup"
+                android:textColor="#fff"
+                android:textSize="18sp"/>
 
             <Button
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_regist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textlayout"
-                android:background="@drawable/btn_clear_green"
-                android:text="LOGIN"
-                android:textStyle="bold" />
+                android:background="@drawable/btn_clear_red"
+                android:layout_marginTop="10dp"
+                android:text="Signup"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_regist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/layout_mid"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/btn_clear_red"
-            android:text="Signup"
-            android:textStyle="bold"
-            android:layout_marginBottom="20dp"/>
+
 
     </RelativeLayout>
 </ScrollView>
